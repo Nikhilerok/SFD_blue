@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      - '*/*'  # Include pushes to any branch
+      - '*/*'  # Include pushes to any branch 
   pull_request:
     types: [closed]  # Trigger when a pull request is closed (merged)
 
