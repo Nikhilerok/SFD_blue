@@ -1,17 +1,5 @@
 public with sharing class ContactController {
-    @AuraEnabled(cacheable=true)
-    public static List<Contact> getContacts() {
-        return [ SELECT Id, Name, Email FROM Contact ] ;
-    }
-    @AuraEnabled(cacheable=true)
-    public static List<Contact> findContactByAccountId(String accountId) {      
-        return [
-            SELECT Id, FirstName,LastName,Email,Phone  
-            FROM Contact 
-            WHERE AccountId=:accountId 
-
-            LIMIT 10];
-    }
+ 
 
 
    /*
@@ -53,15 +41,5 @@ public static List<Contact> getContactss(Integer pageNumber, Integer pageSize, S
 
 */
 
-@AuraEnabled(cacheable=true)
-public static List<Contact> getContactss(Integer pageNumber, Integer pageSize, String searchTerm) {
-    Integer offset = (pageNumber - 1) * pageSize;
-    String searchQuery = '%' + searchTerm + '%'; // Add wildcards for partial search
-    
-    return [SELECT Id, Name, Email, Phone 
-            FROM Contact 
-            WHERE (FirstName LIKE :searchQuery OR LastName LIKE :searchQuery) 
-            ORDER BY Name ASC 
-            LIMIT :pageSize OFFSET :offset];
-}
+
 }
